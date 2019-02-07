@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { Action } from 'rxjs/internal/scheduler/Action';
 
 export const FETCHING = 'FETCHING';
 export const SUCCESS = 'SUCCESS';
 export const ADDING = 'ADDING';
 export const DELETING = 'DELETING';
+export const FAILURE = 'FAILURE';
 
 export const fetchFriends = () => dispatch => {
   dispatch({ type: FETCHING });
@@ -13,8 +13,8 @@ export const fetchFriends = () => dispatch => {
     .then(response => {
       dispatch({ type: SUCCESS, payload: response.data })
     })
-    .catch(err => {
-      console.log(err);
+    .catch(() => {
+      dispatch({ type: FAILURE, error: 'Something went so wrong. No Friends found!'})
     })
 }
 
@@ -24,8 +24,8 @@ export const addFriend = friend => dispatch => {
     .then(response => {
       dispatch({ type: SUCCESS, payload: response.data })
     })
-    .catch(err => {
-      console.log(err);
+    .catch(() => {
+      dispatch({ type: FAILURE, error: 'Could not make new Friend. Typical...'});
     });
 }
 
@@ -37,6 +37,6 @@ export const deleteFriend = id => dispatch => {
       dispatch({ type: SUCCESS, payload: response.data })
     })
     .catch(err => {
-      console.log(err);
+      dispatch({ type: FAILURE, error: 'Could not delete. FRIENDS TO THE END!'});
     })
 }
