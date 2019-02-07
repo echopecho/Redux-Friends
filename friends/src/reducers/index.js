@@ -1,9 +1,11 @@
-import { FETCHING, SUCCESS, ADDING, DELETING, FAILURE } from '../actions';
+import { FETCHING, SUCCESS, ADDING, DELETING, FAILURE, SELECT } from '../actions';
 
 const initialState = {
   friends: [],
   fetching: false,
   adding: false,
+  deleting: false,
+  selectedID: '',
   error: null
 };
 
@@ -19,6 +21,8 @@ export default (state = initialState, action) => {
       return { ...state, friends: [], deleting: true, error: null }
     case FAILURE:
       return { ...state, friends: [], error: action.error }
+    case SELECT:
+      return { ...state, select: action.id }
     default:
       return state;
   }

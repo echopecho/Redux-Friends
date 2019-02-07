@@ -5,6 +5,7 @@ export const SUCCESS = 'SUCCESS';
 export const ADDING = 'ADDING';
 export const DELETING = 'DELETING';
 export const FAILURE = 'FAILURE';
+export const SELECT = 'SELECT';
 
 export const fetchFriends = () => dispatch => {
   dispatch({ type: FETCHING });
@@ -33,10 +34,13 @@ export const deleteFriend = id => dispatch => {
   dispatch({ type: DELETING })
   axios.delete(`http://localhost:5000/api/friends/${id}`)
     .then(response => {
-      console.log(response);
       dispatch({ type: SUCCESS, payload: response.data })
     })
-    .catch(err => {
+    .catch(()  => {
       dispatch({ type: FAILURE, error: 'Could not delete. FRIENDS TO THE END!'});
     })
+}
+
+export const selectFriend = id => {
+  return { type: SELECT, id: id }
 }
