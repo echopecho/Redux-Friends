@@ -6,17 +6,13 @@ import FriendForm from './FriendForm';
 
 const Friend = props => {
   return (
-    <div 
-      onClick={!props.selected ? () => props.selectFriend(props.friend.id) : null} 
-      // className={props.selected === props.friend.id ? "selected" : null}
+    <div
+      className="friend-container" 
+      onClick={props.selected !== props.friend.id ? () => props.selectFriend(props.friend.id) : null}
     >
       {props.selected === props.friend.id ? 
-        <div>
-          <FriendForm friend={props.friend} selected />
-        </div> :
-        <div>
-          {props.friend.name}
-        </div>
+        <FriendForm friend={props.friend} selected /> :
+        <div className="friend">{props.friend.name}</div>
       }
       <span onClick={() => props.deleteFriend(props.friend.id)}>  X  </span>
     </div>

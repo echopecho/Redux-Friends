@@ -44,7 +44,7 @@ class FriendForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={this.props.selected ? "update-friend" : "add-friend"}>
         <form onSubmit={this.submitFriend}>
           <input 
             onChange={this.handleChange} 
@@ -70,7 +70,7 @@ class FriendForm extends React.Component {
             value={this.state.email}
           >
           </input>
-          {this.props.selected ? <button type="submit">Update Friend</button> : <button type="submit">Add Friend</button>}
+          <button type="submit">{this.props.selected ? "Update Friend" : "Add Friend"}</button>
         </form>
       </div>
     )
