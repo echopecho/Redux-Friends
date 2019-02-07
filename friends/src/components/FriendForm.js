@@ -14,6 +14,16 @@ class FriendForm extends React.Component {
     }
   }
 
+  componentDidMount() {
+    if(this.props.selected) {
+      this.setState({ 
+        name: this.props.friend.name,
+        age: this.props.friend.age,
+        email: this.props.friend.email
+      });
+    }
+  }
+
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
