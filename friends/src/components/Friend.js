@@ -7,7 +7,7 @@ import FriendForm from './FriendForm';
 const Friend = props => {
   return (
     <div 
-      onClick={() => props.selectFriend(props.friend.id)} 
+      onClick={!props.selected ? () => props.selectFriend(props.friend.id) : null} 
       // className={props.selected === props.friend.id ? "selected" : null}
     >
       {props.selected === props.friend.id ? 
@@ -25,7 +25,7 @@ const Friend = props => {
 
 const mapStateToProps = state => {
   return {
-    selected: state.select
+    selected: state.selectedID
   }
 }
 
