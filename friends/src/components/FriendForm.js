@@ -52,6 +52,7 @@ class FriendForm extends React.Component {
             placeholder="Enter Name" 
             name="name" 
             value={this.state.name}
+            required
           >
           </input>
           <input 
@@ -60,6 +61,7 @@ class FriendForm extends React.Component {
             placeholder="Enter Age" 
             name="age" 
             value={this.state.age}
+            required
           >
           </input>
           <input 
@@ -68,6 +70,7 @@ class FriendForm extends React.Component {
             placeholder="Enter Email" 
             name="email" 
             value={this.state.email}
+            required
           >
           </input>
           <button type="submit">{this.props.selected ? "Update Friend" : "Add Friend"}</button>

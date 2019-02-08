@@ -1,15 +1,12 @@
 import axios from 'axios';
 
-export const FETCHING = 'FETCHING';
+export const LOADING = 'FETCHING';
 export const SUCCESS = 'SUCCESS';
-export const ADDING = 'ADDING';
-export const DELETING = 'DELETING';
 export const FAILURE = 'FAILURE';
 export const SELECT = 'SELECT';
-export const UPDATING = 'UPDATING';
 
 export const fetchFriends = () => dispatch => {
-  dispatch({ type: FETCHING });
+  dispatch({ type: LOADING });
   axios
     .get('http://localhost:5000/api/friends')
     .then(response => {
@@ -21,7 +18,7 @@ export const fetchFriends = () => dispatch => {
 }
 
 export const addFriend = friend => dispatch => {
-  dispatch({ type: ADDING });
+  dispatch({ type: LOADING });
   axios.post('http://localhost:5000/api/friends', friend)
     .then(response => {
       dispatch({ type: SUCCESS, payload: response.data })
@@ -32,7 +29,7 @@ export const addFriend = friend => dispatch => {
 }
 
 export const deleteFriend = id => dispatch => {
-  dispatch({ type: DELETING })
+  dispatch({ type: LOADING })
   axios.delete(`http://localhost:5000/api/friends/${id}`)
     .then(response => {
       dispatch({ type: SUCCESS, payload: response.data })
@@ -43,7 +40,7 @@ export const deleteFriend = id => dispatch => {
 }
 
 export const updateFriend = (friend, id) => dispatch => {
-  dispatch({ type: UPDATING });
+  dispatch({ type: LOADING });
   axios.put(`http://localhost:5000/api/friends/${id}`, friend)
     .then(response => {
       dispatch({ type: SUCCESS, payload: response.data })
